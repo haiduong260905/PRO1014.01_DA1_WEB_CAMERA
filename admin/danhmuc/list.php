@@ -23,6 +23,33 @@
                 <th>Hình danh mục</th>
                 <th class="text-center">Thao tác</th>
             </tr>
+
+            <?php
+            foreach ($listdanhmuc as $key => $danhmuc) {
+                extract($danhmuc);
+                $suadm = "index.php?act=suadm&id=" . $id;
+                $xoadm = "index.php?act=xoadm&id=" . $id;
+                $hinhpath = "../upload/" . $hinhdm;
+                if (is_file($hinhpath)) {
+                    $hinh = "<img src='" . $hinhpath . "' height = '80'>";
+                } else {
+                    $hinh = "Không có hình ảnh";
+                }
+                $stt = $key + 1;
+                echo '
+                <tr>
+                    <td>' . $stt . '</td>
+                    <td>' . $tendm . '</td>
+                    <td>' . $hinh . '</td>
+                    <td class="text-center">
+                        <a href="' . $suadm . '"><input type="button" value="Sửa" class="btn-update"></input></a>
+                        <a href="' . $xoadm . '" class="deleteLink" data-id="' . $id . '"><input type="button" value="Xóa" class="btn-delete"></a>
+                    </td>
+                </tr>
+                ';
+            }
+            ?>
         </table>
+
     </div>
 </div>
