@@ -11,6 +11,41 @@
     </div>
 
     <div class="row form-content">
-        <table></table>
+        <table>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Khách hàng</th>
+                <th>Số điện thoại</th>
+                <th>Giá trị đơn hàng</th>
+                <th>Tình trạng</th>
+                <th>Ngày đặt hàng</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+
+            <?php
+            foreach ($listbill as $bill) {
+                extract($bill);
+                $xoabill = "index.php?act=xoabill&id=" . $id;
+                $suabill = "index.php?act=suabill&id=" . $id;
+                $chitietbill = "index.php?act=chitietbill&id=" . $id;
+                $ttdh = get_ttdh($bill["trangthai_dh"]);
+                echo '
+                    <tr>
+                        <td>DH-' . $bill['id'] . '</td>
+                        <td>' . $bill['tenkh'] . '</td>
+                        <td>' . $bill['sdt_dh'] . '</td>
+                        <td>' . number_format($bill["tong"], 0, ",", ".") . '<u>Đ</u></td>
+                        <td>' . $ttdh . '</td>
+                        <td>' . $bill['ngaydathang'] . '</td>
+                        <td class="text-center">
+                            <a href="' . $suabill . '"><input type="button" value="Sửa" class="btn-update"></a>
+                            <a href="' . $xoabill . '" class="deleteLink" data-id="' . $id . '"><input type="button" value="Hủy" class="btn-delete"></a>
+                            <a href="' . $chitietbill . '"><input type="button" value="Chi tiết" class="btn-detail"></a>
+                        </td>
+                    </tr>
+                ';
+            }
+            ?>
+        </table>
     </div>
 </div>
