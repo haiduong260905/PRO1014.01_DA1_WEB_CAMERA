@@ -18,7 +18,7 @@ function pdo_execute_return_lastInsertId($sql){
     }
 }
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=duan1_php;charset=utf8"; //Lưu ý dbname
+    $dburl = "mysql:host=localhost;dbname=duan1;charset=utf8"; //Lưu ý dbname
     $username = 'root';
     $password = '';
 
