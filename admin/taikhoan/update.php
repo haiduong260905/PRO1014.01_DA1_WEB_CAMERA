@@ -24,7 +24,7 @@ if (is_file($hinhpath)){
 
         <div class="form-group">
             <label for="" class="title-form-group">Tên đăng nhập:</label><br>
-            <input type="text" name="tendn" id="" class="form-input" value="<?= $tedn ?>">
+            <input type="text" name="tendn" id="" class="form-input" value="<?= $tendn ?>">
         </div>
         <div class="form-group">
             <label for="" class="title-form-group">Mật khẩu:</label><br>
