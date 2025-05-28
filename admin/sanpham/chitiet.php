@@ -13,6 +13,7 @@ if (is_file($hinhpath)) {
 
 $idsp = $_GET['id'];
 $listbl_theoid = loadall_binhluan($idsp)
+
 ?>
 <div class="box-right">
     <div class="title-page">

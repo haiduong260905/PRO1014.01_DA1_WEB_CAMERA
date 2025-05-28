@@ -6,6 +6,7 @@ include("../model/sanpham.php");
 include("../model/taikhoan.php");
 include("../model/giohang.php");
 include("../model/binhluan.php");
+include("../model/mausac.php");
 
 if (isset($_GET["act"]) && ($_GET["act"])) {
     $act = $_GET["act"];
@@ -92,26 +93,32 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
             break;
 
         case 'addsp':
-            //Kiểm tra người dùng có click add không?
             if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
                 $iddm = $_POST['iddm'];
-                $tensp = $_POST['tensp'];
-                $giasp = $_POST['giasp'];
-                $soluong = $_POST['soluong'];
-                $mota = $_POST['mota'];
-                $donvi = $_POST['donvi'];
+                $tensp = trim($_POST['tensp']);
+                $giasp = trim($_POST['giasp']);
+                $soluong = trim($_POST['soluong']);
+                $mota = trim($_POST['mota']);
+                $donvi = trim($_POST['donvi']);
                 $ngaynhap = $_POST['ngaynhap'];
+                $idmausac = isset($_POST['idmausac']) ? $_POST['idmausac'] : 0; // Nếu có màu sắc
+
                 $hinh = $_FILES['hinh']['name'];
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    
-                } else {
-                    
+                    // Upload thành công
                 }
-                insert_sanpham($tensp, $giasp, $soluong, $hinh, $mota, $donvi, $ngaynhap, $iddm);
-                $thongbao = "Thêm thành công";
-                header("location: index.php?act=listsp");
+
+                // ✅ Kiểm tra dữ liệu trước khi insert
+                if ($tensp != "" && is_numeric($giasp) && $giasp > 0 && is_numeric($soluong)) {
+                    insert_sanpham($tensp, $giasp, $soluong, $hinh, $mota, $donvi, $ngaynhap, $iddm, $idmausac);
+                    $thongbao = "Thêm thành công";
+                    header("location: index.php?act=listsp");
+                    exit();
+                } else {
+                    $thongbao = "⚠️ Vui lòng nhập đầy đủ thông tin và đảm bảo giá/số lượng là số.";
+                }
             }
             $listdm = loadall_danhmuc();
             include('sanpham/add.php');
