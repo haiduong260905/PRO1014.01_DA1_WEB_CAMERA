@@ -73,12 +73,10 @@
     }
 </style>
 
-
 <?php
-include __DIR__ . "/../../model/mausac.php";
+include_once __DIR__ . "/../../model/mausac.php";
 $listmausac = loadall_mausac(); // gọi dữ liệu màu sắc
 ?>
-
 
 <div class="box-right">
     <div class="title-page">
@@ -138,8 +136,6 @@ $listmausac = loadall_mausac(); // gọi dữ liệu màu sắc
         </div>
 
         <div class="form-group">
-
-
             <label>Mô tả sản phẩm:</label>
             <textarea name="mota" class="form-input" rows="4" placeholder="Mô tả chi tiết sản phẩm"></textarea>
         </div>
