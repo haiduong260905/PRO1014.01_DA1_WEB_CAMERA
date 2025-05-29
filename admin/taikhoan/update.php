@@ -22,14 +22,14 @@ if (is_file($hinhpath)){
             <?= $hinh ?>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="" class="title-form-group">Tên đăng nhập:</label><br>
             <input type="text" name="tendn" id="" class="form-input" value="<?= $tendn ?>">
         </div>
         <div class="form-group">
             <label for="" class="title-form-group">Mật khẩu:</label><br>
             <input type="password" name="mk" id="" class="form-input" value="<?= $mk ?>">
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="" class="title-form-group">Email:</label><br>
             <input type="email" name="email" id="" class="form-input" value="<?= $email ?>">
