@@ -24,7 +24,9 @@
         margin-bottom: 6px;
     }
 
-    .form-input, select, textarea {
+    .form-input,
+    select,
+    textarea {
         width: 100%;
         padding: 6px 10px;
         border: 1px solid #ccc;
