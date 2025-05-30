@@ -12,6 +12,7 @@ include "../model/giohang.php";
 if (!isset($_SESSION['mycart']))
     $_SESSION['mycart'] = [];
 
+
 $sphome = loadall_sanpham_home();
 $spall = loadall_sanpham_shop();
 $dmnew = loadall_danhmuc_home();
@@ -20,7 +21,7 @@ $listdonmua = loadall_bill(0);
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
     switch ($act) {
-        
+
         default:
             include "view/home.php";
             break;
