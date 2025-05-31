@@ -14,7 +14,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
             session_unset();
             header("location: ../client/index.php");
             break;
-            // Danh mục
+        // Danh mục
         case 'listdm':
             if (isset($_POST['timkiemdm']) && ($_POST['timkiemdm'])) {
                 $kyw = $_POST['kyw'];
@@ -65,9 +65,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
                 $target_dir = "../upload/"; //Khai báo thư mục upload
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    
                 } else {
-                    
                 }
                 update_danhmuc($id, $tenloai, $hinh);
                 $thongbao = "Cập nhật thành công";
@@ -77,7 +75,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
             include "danhmuc/add.php";
             break;
 
-            // Sản phẩm
+        // Sản phẩm
         case 'listsp':
             if (isset($_POST['timkiemsp']) && ($_POST['timkiemsp'])) {
                 $kyw = $_POST['kyw'];
@@ -105,9 +103,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    
                 } else {
-                    
                 }
                 insert_sanpham($tensp, $giasp, $soluong, $hinh, $mota, $donvi, $ngaynhap, $iddm);
                 $thongbao = "Thêm thành công";
@@ -145,9 +141,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                   
                 } else {
-                    
                 }
                 update_sanpham($id, $iddm, $tensp, $giasp, $soluong, $mota, $donvi, $ngaynhap, $hinh);
                 $thongbao = "Cập nhật thành công";
@@ -163,7 +157,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
             include('sanpham/chitiet.php');
             break;
 
-            // Tài khoản
+        // Tài khoản
         case 'listtk':
             if (isset($_POST['timkiemtk']) && ($_POST['timkiemtk'])) {
                 $kyw = $_POST['kyw'];
@@ -208,9 +202,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                   
                 } else {
-                   
                 }
                 update_taikhoan($id, $email, $dc, $sdt, $vaitro, $hinh);
                 $thongbao = "Cập nhật thành công";
@@ -219,7 +211,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
             $listdm = loadall_danhmuc();
             break;
 
-            // Đơn hàng
+        // Đơn hàng
         case 'listbill':
             if (isset($_POST['timkiemdh']) && ($_POST['timkiemdh'])) {
                 $kyw = $_POST['kyw'];
@@ -249,10 +241,12 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
                 $dc_dh = $_POST['dc_dh'];
                 $sdt_dh = $_POST['sdt_dh'];
                 $email_dh = $_POST['email_dh'];
+                $trangthai_dh = $_POST['trangthai_dh'];
 
-                update_bill($id, $dc_dh, $sdt_dh, $email_dh);
+                update_bill($id, $dc_dh, $sdt_dh, $email_dh, $trangthai_dh);
                 $thongbao = "Cập nhật thành công";
                 header("location: index.php?act=listbill");
+                exit();
             }
             $listdm = loadall_danhmuc();
             break;
@@ -289,7 +283,7 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
             }
             break;
 
-            // Bình luận
+        // Bình luận
         case 'listbl':
             if (isset($_POST['timkiembl']) && ($_POST['timkiembl'])) {
                 $kyw = $_POST['kyw'];

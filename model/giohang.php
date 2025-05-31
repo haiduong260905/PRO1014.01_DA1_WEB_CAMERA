@@ -51,13 +51,13 @@ function loadone_donmua($id) //Đơn mua
 
 function listdonmua($id) //Load all đơn mua theo $_session['user']['id']
 {
-    $sql = "SELECT * FROM tb_donhang WHERE makh=" . $id ;
+    $sql = "SELECT * FROM tb_donhang WHERE makh=" . $id;
     $sql .= " ORDER BY id DESC";
     $bill = pdo_query($sql);
     return $bill;
 }
 
-function loadall_bill($makh, $kyw="")
+function loadall_bill($makh, $kyw = "")
 {
     $sql = "SELECT * FROM tb_donhang WHERE 1";
     //Các đơn hàng có chứa kí tự trong kyw sẽ hiển thị ra
@@ -77,9 +77,14 @@ function delete_bill($id)
     pdo_execute($sql);
 }
 
-function update_bill($id, $dc_dh, $sdt_dh, $email_dh)
+function update_bill($id, $dc_dh, $sdt_dh, $email_dh, $trangthai_dh)
 {
-    $sql = "UPDATE tb_donhang SET dc_dh= '" . $dc_dh . "', sdt_dh= '" . $sdt_dh . "', email_dh= '" . $email_dh . "' WHERE id=" . $id;
+    $sql = "UPDATE tb_donhang
+            SET dc_dh= '" . $dc_dh . "',
+                sdt_dh= '" . $sdt_dh . "',
+                email_dh= '" . $email_dh . "',
+                trangthai_dh= '" . $trangthai_dh . "'
+                WHERE id=" . $id;
     pdo_execute($sql);
 }
 
@@ -171,7 +176,7 @@ function viewcart($del)
                 <th>Thành tiền</th>
                 ' . $xoasp_th . '
             </tr>';
-        foreach ($_SESSION['mycart'] as $cart) {
+    foreach ($_SESSION['mycart'] as $cart) {
         $hinh = $img_path . $cart[2];
         $ttien = $cart[3] * $cart[4];
         $tong += $ttien; //Tổng tiền và đơn hàng
@@ -211,4 +216,3 @@ function loadall_cart($iddonhang)
     $bill = pdo_query($sql);
     return $bill;
 }
-?>
