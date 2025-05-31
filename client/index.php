@@ -29,6 +29,10 @@ if (isset($_GET["act"])) {
             include "view/sanpham/spdm.php";
             break;
 
+        case "sanpham":
+            include "view/sanpham.php";
+            break;
+
         default:
             include "view/home.php";
             break;
