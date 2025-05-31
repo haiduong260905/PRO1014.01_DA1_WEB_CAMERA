@@ -74,6 +74,39 @@ $ttdh = get_ttdh($trangthai_dh);
             </table>
         </div>
     </div>
+
+    <?php
+    if ($trangthai_dh == 0) {
+        echo '
+        <div class="form-confirm mr28">
+            <form action="index.php?act=xacnhandh" method="post">
+                <input type="hidden" name="id" value="' . $id . '">
+                <input type="submit" name="xacnhan" value="Xác nhận đơn hàng">
+            </form>
+        </div>
+        ';
+    }
+    if ($trangthai_dh == 1) {
+        echo '
+        <div class="form-confirm mr28">
+            <form action="index.php?act=xacnhangiaohang" method="post">
+                <input type="hidden" name="id" value="' . $id . '">
+                <input type="submit" name="xacnhan" value="Giao hàng">
+            </form>
+        </div>
+        ';
+    }
+    if ($trangthai_dh == 3) {
+        echo '
+        <div class="form-confirm mr28">
+            <form action="index.php?act=xacnhanthanhtoan" method="post">
+                <input type="hidden" name="id" value="' . $id . '">
+                <input type="submit" name="xacnhan" value="Thanh toán thành công">
+            </form>
+        </div>
+        ';
+    }
+    ?>
     <div class="mt90 donhangct">
         <div class="statistic-title2 pd10" style="margin-top: 0;">
             <p>Thông tin đơn hàng</p>
@@ -113,3 +146,35 @@ $ttdh = get_ttdh($trangthai_dh);
         </div>
     </div>
 </div>
+<script>
+    // Gắn sự kiện lắng nghe cho tất cả các phần tử có class deleteLink
+    const deleteLinks = document.querySelectorAll('deleteLink');
+    deleteLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+
+            const id = this.getAttribute('data-id'); // Lấy id từ thuộc tính data
+            const xoabill = "index.php?act=xoabill&id=" + $id;
+
+            Swal.fire({
+                title: "Xác nhận hủy đơn?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xác nhận"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        // Thực hiện yêu cầu xóa
+                        title: "Đã hủy đơn hàng!",
+                        icon: "success"
+                    }).then(() => {
+                        // Chuyển hướng đến URL xóa
+                        window.location.href = xoabill;
+                    });
+                }
+            });
+        });
+    });
+</script>

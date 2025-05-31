@@ -32,6 +32,17 @@ $ttdh = get_ttdh($trangthai_dh);
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="trangthai_dh">Trạng thái đơn hàng:</label>
+            <select name="trangthai_dh" class="form-input" id="trangthai_dh" value="<?= $trangthai_dh ?>">
+                <option value="0" <?= ($trangthai_dh == 0) ? 'selected' : '' ?>>Chờ xác nhận</option>
+                <option value="1" <?= ($trangthai_dh == 1) ? 'selected' : '' ?>>Đã xác nhận</option>
+                <option value="2" <?= ($trangthai_dh == 2) ? 'selected' : '' ?>>Đang giao hàng</option>
+                <option value="3" <?= ($trangthai_dh == 3) ? 'selected' : '' ?>>Đã nhận được hàng</option>
+                <option value="4" <?= ($trangthai_dh == 4) ? 'selected' : '' ?>>Đã thanh toán</option>
+            </select>
+        </div>
+
         <div>
             <input type="hidden" name="id" value="<?= $id ?>">
             <input type="submit" class="btn-submit" name="capnhat" value="Submit">
