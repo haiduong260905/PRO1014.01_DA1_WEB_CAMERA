@@ -5,7 +5,7 @@
 
     <div class="form-search">
         <form action="index.php?act=listsp" method="post">
-            <input type="text" name="kyw" placeholder="Nhập từ khóa"> 
+            <input type="text" name="kyw" placeholder="Nhập từ khóa">
             <select name="iddm" class="dm-sp">
                 <option value="0" selected>Tất cả</option>
                 <?php
@@ -108,15 +108,15 @@
 
 <!-- CSS cải thiện mô tả -->
 <style>
-.table-description {
-    max-height: 120px;
-    overflow-y: auto;
-    padding: 5px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    white-space: pre-line;
-    font-size: 14px;
-    line-height: 1.5;
-    max-width: 400px;
-}
+    .table-description {
+        max-height: 120px;
+        overflow-y: auto;
+        padding: 5px;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        white-space: pre-line;
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 400px;
+    }
 </style>

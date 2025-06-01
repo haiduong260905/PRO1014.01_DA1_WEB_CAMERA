@@ -49,3 +49,35 @@
         </table>
     </div>
 </div>
+<script>
+    // Gắn sự kiện lắng nghe cho tất cả các phần tử có class deleteLink
+    const deleteLinks = document.querySelectorAll('deleteLink');
+    deleteLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+
+            const id = this.getAttribute('data-id'); // Lấy id từ thuộc tính data
+            const xoabill = "index.php?act=xoabill&id=" + $id;
+
+            Swal.fire({
+                title: "Xác nhận hủy đơn?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xác nhận"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        // Thực hiện yêu cầu xóa
+                        title: "Đã hủy đơn hàng!",
+                        icon: "success"
+                    }).then(() => {
+                        // Chuyển hướng đến URL xóa
+                        window.location.href = xoabill;
+                    });
+                }
+            });
+        });
+    });
+</script>
