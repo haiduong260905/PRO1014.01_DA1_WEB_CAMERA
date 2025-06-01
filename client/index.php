@@ -20,6 +20,23 @@ $listdonmua = loadall_bill(0);
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
     switch ($act) {
+        case 'dangnhap':
+            include "view/taikhoan/dangnhap.php";
+            break;
+        case 'dangky':
+            include "view/taikhoan/dangky.php";
+            break;
+        case 'dangxuat':
+            unset($_SESSION['mycart']);
+            unset($_SESSION['taikhoan']);
+            include "view/taikhoan/dangnhap.php";
+            break;
+        case 'doimk':
+            include "view/taikhoan/doimk.php";
+            break;
+        case 'taikhoan':
+            include "view/taikhoan/taikhoan.php";
+            break;
         
         default:
             include "view/home.php";
