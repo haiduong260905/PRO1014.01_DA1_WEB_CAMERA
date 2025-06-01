@@ -108,6 +108,24 @@ if (isset($_GET["act"])) {
             include "view/donhang/donmua.php";
             break;
 
+        case 'chitietdonmua':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $billct = loadall_cart($_GET['id']);
+                $donhang = loadone_bill($_GET['id']);
+            }
+            include "view/donhang/chitiet.php";
+            break;
+
+        case 'danhan':
+            if (isset($_POST['xacnhan']) && ($_POST['xacnhan'])) {
+                if (isset($_POST['id']) && ($_POST['id'] > 0)) {
+                    $id = $_POST['id'];
+                    da_nhan_hang($id);
+                }
+                header("location: index.php?act=donmua");
+            }
+            break;
+
         default:
             include "view/home.php";
             break;
