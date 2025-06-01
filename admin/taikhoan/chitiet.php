@@ -102,6 +102,7 @@ if (is_file($hinhpath)) {
                 $xoabill = "index.php?act=xoabill&id=" . $id;
                 $suabill = "index.php?act=suabill&id=" . $id;
                 $chitietbill = "index.php?act=chitietbill&id=" . $id;
+                $ttdh = get_ttdh($trangthai_dh);
                 echo '<tr>
                 <td>DH-' . $id . '</td>
                 <td>' . $tenkh . '</td>

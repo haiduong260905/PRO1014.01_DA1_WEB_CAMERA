@@ -49,7 +49,7 @@
     deleteLinks.forEach(link => {
         link.addEventListener('click', function (event) {
             event.preventDefault();
-            const id = this.getAtribute('data-id');
+            const id = this.getAttribute('data-id');
             const xoatk = "index.php?act=xoatk&id=" + id;
             
             Swal.fire({
