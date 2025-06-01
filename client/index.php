@@ -97,6 +97,17 @@ if (isset($_GET["act"])) {
             include "view/donhang/xacnhan.php";
             break;
 
+        // Đơn mua
+        case 'donmua':
+            if (isset($_SESSION['user'])){
+                extract($_SESSION['user']);
+                $id = $_SESSION['user']['id'];
+                $donmua = loadone_donmua($id);
+                $listdonmua = listdonmua($id);
+            }
+            include "view/donhang/donmua.php";
+            break;
+
         default:
             include "view/home.php";
             break;
