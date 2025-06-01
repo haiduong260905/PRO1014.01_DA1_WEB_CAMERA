@@ -43,7 +43,7 @@ if (isset($_GET["act"])) {
             include "view/taikhoan/dangnhap.php";
             break;
         case 'dangky':
-            if (isset ($_POST['danhky']) && ($_POST['dangky'])){
+            if (isset ($_POST['dangky']) && ($_POST['dangky'])){
                 $user = $_POST['user'];
                 $pass = $_POST['pass'];
                 $email = $_POST['email'];
