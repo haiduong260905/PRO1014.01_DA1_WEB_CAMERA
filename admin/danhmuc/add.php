@@ -22,5 +22,12 @@
         <div>
             <input type="submit" class="btn-submit" name="themmoi" value="Submit">
         </div>
+
+        <div class="thongbao">
+            <?php
+            if (isset($thongbao) && ($thongbao != "")) // Kiểm tra nếu có thông báo (Ví dụ: Thêm thành công)
+                echo $thongbao; // Hiển thị thông báo
+            ?>
+        </div>
     </form>
 </div>
