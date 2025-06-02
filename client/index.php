@@ -127,6 +127,22 @@ if (isset($_GET["act"])) {
             break;
 
         // Sản phẩm
+        case 'lienhe' :
+            include "view/lienhe.php";
+            break;
+             case 'baiviet' :
+            include "view/baiviet.php";
+            break;
+            case 'baiviet-chitiet':
+            include "view/baiviet-chitiet.php";
+            break;
+            case 'gioithieu':
+            include "view/gioithieu.php";
+            break;
+            case 'thongtin' :
+            include "view/thongtin.php";
+            break;
+        
         case "chitietsp":
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $sanpham = loadone_sanpham($_GET['id']);
