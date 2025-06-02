@@ -20,7 +20,21 @@ $listdonmua = loadall_bill(0);
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
     switch ($act) {
-        
+        case 'lienhe' :
+            include "view/lienhe.php";
+            break;
+             case 'baiviet' :
+            include "view/baiviet.php";
+            break;
+            case 'baiviet-chitiet':
+            include "view/baiviet-chitiet.php";
+            break;
+            case 'gioithieu':
+            include "view/gioithieu.php";
+            break;
+            case 'thongtin' :
+            include "view/thongtin.php";
+            break;
         default:
             include "view/home.php";
             break;
