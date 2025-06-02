@@ -118,7 +118,7 @@ $listdm = loadall_danhmuc();
                                         <input type="hidden" name="id" value="' . $id . '">
                                         <input type="hidden" name="tensp" value="' . $tensp . '">
                                         <input type="hidden" name="hinh" value="' . $hinh . '">
-                                        <input type="hidden" name="gia" value="' . $giasp . '">
+                                        <input type="hidden" name="giasp" value="' . $giasp . '">
                                         <div class="product-quantity">
                                             <h4>Số lượng</h4>
                                             <div class="quantity mb20">
