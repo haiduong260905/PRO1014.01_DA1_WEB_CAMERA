@@ -190,7 +190,7 @@ function viewcart($del)
             <tr>
             <td><img src="' . $hinh . '" alt="" height="80px"</td>
             <td>' . $cart[1] . '</td>
-            <td>' . number_format($cart[3], 0, ",", ".") . ' <u></u>VNĐ</td>
+            <td>' . number_format((float)($cart[3] ?? 0)) . ' <u></u>VNĐ</td>
             <td>' . $cart[4] . '</td>
             <td>' . number_format($ttien, 0, ",", ".") . ' <u></u>VNĐ</td>
             ' . $xoasp_td . '

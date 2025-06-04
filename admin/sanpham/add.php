@@ -75,6 +75,11 @@
     }
 </style>
 
+<?php
+include_once __DIR__ . "/../../model/mausac.php";
+$listmausac = loadall_mausac(); // gọi dữ liệu màu sắc
+?>
+
 <div class="box-right">
     <div class="title-page">
         <p>Thêm sản phẩm</p>
@@ -107,13 +112,29 @@
             <label>Giá sản phẩm:</label>
             <div class="form-group-price">
                 <span class="input-group-text">$</span>
-                <input type="text" name="giasp" class="form-input" placeholder="Nhập giá sản phẩm">
+                <input type="number" name="giasp" min="0" required />
+
+                <!-- <input type="text" name="giasp" class="form-input" placeholder="Nhập giá sản phẩm"> -->
+
             </div>
         </div>
 
         <div class="form-group">
             <label>Số lượng:</label>
             <input type="text" name="soluong" class="form-input" placeholder="Nhập số lượng sản phẩm">
+        </div>
+
+        <div class="form-group">
+
+            <label>Màu sắc:</label>
+            <select name="idmausac" class="form-input">
+                <?php
+                foreach($listmausac as $mausac){
+                    extract($mausac);
+                    echo "<option value='" . $id . "'>$tenmau</option>";
+                }
+                ?>
+            </select>
         </div>
 
         <div class="form-group">

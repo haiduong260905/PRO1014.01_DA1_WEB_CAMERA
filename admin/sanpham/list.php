@@ -31,6 +31,7 @@
                 <th>HÌNH SẢN PHẨM</th>
                 <th>GIÁ SẢN PHẨM</th>
                 <th>SỐ LƯỢNG</th>
+                <th>MÀU SẮC</th>
                 <th>MÔ TẢ</th>
                 <th class="text-center">THAO TÁC</th>
             </tr>
@@ -39,6 +40,7 @@
             if (isset($listsanpham)) {
                 foreach ($listsanpham as $key => $sanpham) {
                     extract($sanpham);
+                    $tenmau = $sanpham['tenmau']; // Lấy tên màu từ JOIN
 
                     $xoasp = "index.php?act=xoasp&id=" . $id;
                     $suasp = "index.php?act=suasp&id=" . $id;
@@ -59,6 +61,7 @@
                         <td>' . $hinh . '</td>
                         <td>' . number_format($giasp, 0, ",", ".") . ' <u>đ</u></td>
                         <td>' . $soluong . '</td>
+                        <td>' . $tenmau . '</td>
                         <td><div class="table-description">' . $mota . '</div></td>
                         <td class="text-center">
                             <a href="' . $suasp . '"><input type="button" value="Sửa" class="btn-update"></a>
