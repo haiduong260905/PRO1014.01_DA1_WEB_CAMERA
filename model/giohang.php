@@ -16,8 +16,11 @@ function tong_doanhthu()
 function insert_cart($iduser, $idpro, $img, $name, $price, $soluong, $thanhtien, $iddonhang)
 {
     try {
+        // Xử lý chuỗi HTML trong trường hinh
+        $clean_img = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
+        
         $sql = "INSERT INTO tb_giohang (makh, masp, hinh, ten, gia, soluong, thanhtien, iddonhang) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $args = [$iduser, $idpro, $img, $name, $price, $soluong, $thanhtien, $iddonhang];
+        $args = [$iduser, $idpro, $clean_img, $name, $price, $soluong, $thanhtien, $iddonhang];
         return pdo_execute($sql, ...$args);
     } catch (PDOException $e) {
         echo '<div class="alert alert-danger">Lỗi khi thêm sản phẩm vào giỏ hàng: ' . $e->getMessage() . '</div>';
