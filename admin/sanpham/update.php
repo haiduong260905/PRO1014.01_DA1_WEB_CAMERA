@@ -9,6 +9,9 @@ if (is_file($hinhpath)) {
 }else{
     $hinh = "Khong co hinh anh";
 }
+
+// Thêm dòng này để lấy danh sách màu
+$listms = loadall_mausac();
 ?>
 
 <div class="box-right">
@@ -52,6 +55,19 @@ if (is_file($hinhpath)) {
                 <div class="form-group-price">
                     <input type="text" name="soluong" class="form-input" value="<?= $soluong ?>">
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Màu sắc</label><br>
+                <select name="idmausac" class="form-input">
+                    <option value="0">--Chọn màu sắc--</option>
+                    <?php
+                    foreach ($listms as $mausac) {
+                        $selected = ($idmausac == $mausac['id']) ? "selected" : "";
+                        echo '<option value="'.$mausac['id'].'" '.$selected.'>'.$mausac['tenmau'].'</option>';
+                    }
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">
