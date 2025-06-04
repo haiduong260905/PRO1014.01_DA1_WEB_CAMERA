@@ -20,6 +20,21 @@ $listdonmua = loadall_bill(0);
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
     switch ($act) {
+        case 'lienhe' :
+            include "view/lienhe.php";
+            break;
+             case 'baiviet' :
+            include "view/baiviet.php";
+            break;
+            case 'baiviet-chitiet':
+            include "view/baiviet-chitiet.php";
+            break;
+            case 'gioithieu':
+            include "view/gioithieu.php";
+            break;
+            case 'thongtin' :
+            include "view/thongtin.php";
+            break;
         // Giỏ hàng
         case 'giohang':
             include "view/donhang/giohang.php";
@@ -142,7 +157,7 @@ if (isset($_GET["act"])) {
             case 'thongtin' :
             include "view/thongtin.php";
             break;
-        
+
         case "chitietsp":
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $sanpham = loadone_sanpham($_GET['id']);
@@ -232,6 +247,7 @@ if (isset($_GET["act"])) {
             break;
         case 'updatetk':
             if (isset($_POST['updatetk']) && ($_POST['updatetk'])){
+if (isset($_POST['updatetk']) && ($_POST['updatetk'])){
                 $id = $_POST['id'];
                 $tendn = $_POST['tendn'];
                 $email = $_POST['email'];
@@ -258,7 +274,7 @@ if (isset($_GET["act"])) {
             }
             $listdm = loadall_danhmuc();
             break;
-        
+
         default:
             include "view/home.php";
             break;
