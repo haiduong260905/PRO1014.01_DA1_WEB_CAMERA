@@ -15,8 +15,14 @@ function tong_doanhthu()
 
 function insert_cart($iduser, $idpro, $img, $name, $price, $soluong, $thanhtien, $iddonhang)
 {
-    $sql = "INSERT INTO tb_giohang (makh, masp, hinh, ten, gia, soluong, thanhtien, iddonhang) VALUES ('$iduser', '$idpro', '$img', '$name', '$price', '$soluong', '$thanhtien', '$iddonhang')";
-    return pdo_execute($sql);
+    try {
+        $sql = "INSERT INTO tb_giohang (makh, masp, hinh, ten, gia, soluong, thanhtien, iddonhang) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $args = [$iduser, $idpro, $img, $name, $price, $soluong, $thanhtien, $iddonhang];
+        return pdo_execute($sql, ...$args);
+    } catch (PDOException $e) {
+        echo '<div class="alert alert-danger">Lỗi khi thêm sản phẩm vào giỏ hàng: ' . $e->getMessage() . '</div>';
+        return false;
+    }
 }
 
 function tongdonhang()
@@ -31,8 +37,14 @@ function tongdonhang()
 
 function insert_bill($makh, $user, $email, $dc, $sdt, $ngaydathang, $tongdonhang)
 {
-    $sql = "INSERT INTO tb_donhang (makh, tenkh, email_dh, dc_dh, sdt_dh, ngaydathang, tong) VALUES ('$makh', '$user', '$email', '$dc', '$sdt', '$ngaydathang', '$tongdonhang')";
-    return pdo_execute_return_lastInsertId($sql);
+    try {
+        $sql = "INSERT INTO tb_donhang (makh, tenkh, email_dh, dc_dh, sdt_dh, ngaydathang, tong) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $args = [$makh, $user, $email, $dc, $sdt, $ngaydathang, $tongdonhang];
+        return pdo_execute_return_lastInsertId($sql, ...$args);
+    } catch (PDOException $e) {
+        echo '<div class="alert alert-danger">Lỗi khi xác nhận đơn hàng: ' . $e->getMessage() . '</div>';
+        return false;
+    }
 }
 
 function loadone_bill($id)
