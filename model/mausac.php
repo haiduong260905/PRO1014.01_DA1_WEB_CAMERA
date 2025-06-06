@@ -10,4 +10,9 @@ function loadall_mausac(){
     $listms = pdo_query($sql);
     return $listms;
 }
+
+function loadone_mausac($idmausac){
+    $sql = "SELECT * FROM tb_mausac WHERE id = $idmausac";
+    return pdo_query_one($sql);
+}
 ?>

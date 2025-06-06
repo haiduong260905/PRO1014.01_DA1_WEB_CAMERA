@@ -146,17 +146,20 @@ if (isset($_GET["act"]) && ($_GET["act"])) {
                 $mota = $_POST['mota'];
                 $donvi = $_POST['donvi'];
                 $ngaynhap = $_POST['ngaynhap'];
+                $idmausac = $_POST['idmausac'];
                 $hinh = $_FILES['hinh']['name'];
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
                 } else {
                 }
-                update_sanpham($id, $iddm, $tensp, $giasp, $soluong, $mota, $donvi, $ngaynhap, $hinh);
+                update_sanpham($id, $iddm, $tensp, $giasp, $soluong, $mota, $donvi, $ngaynhap, $idmausac, $hinh);
                 $thongbao = "Cập nhật thành công";
                 header("location: index.php?act=listsp");
             }
             $listdm = loadall_danhmuc();
+            $listsanpham = loadall_sanpham();
+            include('sanpham/list.php');
             break;
 
         case 'chitietsp':
