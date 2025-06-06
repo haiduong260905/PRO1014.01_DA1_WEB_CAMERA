@@ -5,7 +5,7 @@
 
     <div class="form-search">
         <form action="index.php?act=listsp" method="post">
-            <input type="text" name="kyw" placeholder="Nhập từ khóa"> 
+            <input type="text" name="kyw" placeholder="Nhập từ khóa">
             <select name="iddm" class="dm-sp">
                 <option value="0" selected>Tất cả</option>
                 <?php
@@ -31,6 +31,7 @@
                 <th>HÌNH SẢN PHẨM</th>
                 <th>GIÁ SẢN PHẨM</th>
                 <th>SỐ LƯỢNG</th>
+                <th>MÀU SẮC</th>
                 <th>MÔ TẢ</th>
                 <th class="text-center">THAO TÁC</th>
             </tr>
@@ -39,6 +40,7 @@
             if (isset($listsanpham)) {
                 foreach ($listsanpham as $key => $sanpham) {
                     extract($sanpham);
+                    $tenmau = $sanpham['tenmau']; // Lấy tên màu từ JOIN
 
                     $xoasp = "index.php?act=xoasp&id=" . $id;
                     $suasp = "index.php?act=suasp&id=" . $id;
@@ -59,6 +61,7 @@
                         <td>' . $hinh . '</td>
                         <td>' . number_format($giasp, 0, ",", ".") . ' <u>đ</u></td>
                         <td>' . $soluong . '</td>
+                        <td>' . $tenmau . '</td>
                         <td><div class="table-description">' . $mota . '</div></td>
                         <td class="text-center">
                             <a href="' . $suasp . '"><input type="button" value="Sửa" class="btn-update"></a>
@@ -105,15 +108,15 @@
 
 <!-- CSS cải thiện mô tả -->
 <style>
-.table-description {
-    max-height: 120px;
-    overflow-y: auto;
-    padding: 5px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    white-space: pre-line;
-    font-size: 14px;
-    line-height: 1.5;
-    max-width: 400px;
-}
+    .table-description {
+        max-height: 120px;
+        overflow-y: auto;
+        padding: 5px;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        white-space: pre-line;
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 400px;
+    }
 </style>

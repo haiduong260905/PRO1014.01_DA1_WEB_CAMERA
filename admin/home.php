@@ -23,7 +23,10 @@ $tongbinhluan = tong_binhluan();
                         Tổng doanh thu
                     </div>
                     <div class="widget-numbers">
-                       
+                       <?php
+                        $doanhthu_value = $tongdoanhthu[0]["SUM(tong)"];
+                        echo $doanhthu_value !== null ? number_format($doanhthu_value, 0, ",", ".") : '0';
+                        ?>
                         <u>VNĐ</u>
                     </div>
                 </a>
@@ -37,7 +40,7 @@ $tongbinhluan = tong_binhluan();
                         Tổng sản phẩm
                     </div>
                     <div class="widget-numbers">
-                        
+                        <?php echo $tongsanpham ?>
                     </div>
                 </a>
             </div>
@@ -50,7 +53,7 @@ $tongbinhluan = tong_binhluan();
                         Tổng đơn hàng
                     </div>
                     <div class="widget-numbers">
-                         
+                         <?php echo $tongdonhang ?>
                     </div>
                 </a>
             </div>
@@ -63,7 +66,7 @@ $tongbinhluan = tong_binhluan();
                         Số lượng tài khoản
                     </div>
                     <div class="widget-numbers">
-                        
+                        <?php echo $tongtaikhoan ?>
                     </div>
                 </a>
             </div>
@@ -84,7 +87,17 @@ $tongbinhluan = tong_binhluan();
                         <th>Tên sản phẩm</th>
                         <th>Lượt mua</th>
                     </tr>
-
+<?php
+                    foreach ($sp_banchay as $key => $sp) { // Duyệt qua từng sản phẩm bán chạy
+                        extract($sp); // Lấy các giá trị trong mảng sản phẩm vào các biến riêng
+                        $stt = $key + 1; // Xác định số thứ tự của sản phẩm (vị trí trong danh sách)
+                        echo '<tr>
+                        <td>' . $stt . '</td> 
+                        <td>' . $ten . '</td> 
+                        <td>' . $luot_mua . '</td> 
+                    </tr>';
+                    }
+?>
                    
 
                 </table>
@@ -124,7 +137,7 @@ $tongbinhluan = tong_binhluan();
                         Số lượng bình luận
                     </div>
                     <div class="widget-numbers">
-                        
+                        <?php echo $tongbinhluan ?>
                     </div>
                 </a>
             </div>

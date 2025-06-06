@@ -15,8 +15,14 @@ function tong_doanhthu()
 
 function insert_cart($iduser, $idpro, $img, $name, $price, $soluong, $thanhtien, $iddonhang)
 {
-    $sql = "INSERT INTO tb_giohang (makh, masp, hinh, ten, gia, soluong, thanhtien, iddonhang) VALUES ('$iduser', '$idpro', '$img', '$name', '$price', '$soluong', '$thanhtien', '$iddonhang')";
-    return pdo_execute($sql);
+    try {
+        $sql = "INSERT INTO tb_giohang (makh, masp, hinh, ten, gia, soluong, thanhtien, iddonhang) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $args = [$iduser, $idpro, $img, $name, $price, $soluong, $thanhtien, $iddonhang];
+        return pdo_execute($sql, ...$args);
+    } catch (PDOException $e) {
+        echo '<div class="alert alert-danger">Lỗi khi thêm sản phẩm vào giỏ hàng: ' . $e->getMessage() . '</div>';
+        return false;
+    }
 }
 
 function tongdonhang()
@@ -31,8 +37,14 @@ function tongdonhang()
 
 function insert_bill($makh, $user, $email, $dc, $sdt, $ngaydathang, $tongdonhang)
 {
-    $sql = "INSERT INTO tb_donhang (makh, tenkh, email_dh, dc_dh, sdt_dh, ngaydathang, tong) VALUES ('$makh', '$user', '$email', '$dc', '$sdt', '$ngaydathang', '$tongdonhang')";
-    return pdo_execute_return_lastInsertId($sql);
+    try {
+        $sql = "INSERT INTO tb_donhang (makh, tenkh, email_dh, dc_dh, sdt_dh, ngaydathang, tong) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $args = [$makh, $user, $email, $dc, $sdt, $ngaydathang, $tongdonhang];
+        return pdo_execute_return_lastInsertId($sql, ...$args);
+    } catch (PDOException $e) {
+        echo '<div class="alert alert-danger">Lỗi khi xác nhận đơn hàng: ' . $e->getMessage() . '</div>';
+        return false;
+    }
 }
 
 function loadone_bill($id)
@@ -51,13 +63,13 @@ function loadone_donmua($id) //Đơn mua
 
 function listdonmua($id) //Load all đơn mua theo $_session['user']['id']
 {
-    $sql = "SELECT * FROM tb_donhang WHERE makh=" . $id ;
+    $sql = "SELECT * FROM tb_donhang WHERE makh=" . $id;
     $sql .= " ORDER BY id DESC";
     $bill = pdo_query($sql);
     return $bill;
 }
 
-function loadall_bill($makh, $kyw="")
+function loadall_bill($makh, $kyw = "")
 {
     $sql = "SELECT * FROM tb_donhang WHERE 1";
     //Các đơn hàng có chứa kí tự trong kyw sẽ hiển thị ra
@@ -77,9 +89,14 @@ function delete_bill($id)
     pdo_execute($sql);
 }
 
-function update_bill($id, $dc_dh, $sdt_dh, $email_dh)
+function update_bill($id, $dc_dh, $sdt_dh, $email_dh, $trangthai_dh)
 {
-    $sql = "UPDATE tb_donhang SET dc_dh= '" . $dc_dh . "', sdt_dh= '" . $sdt_dh . "', email_dh= '" . $email_dh . "' WHERE id=" . $id;
+    $sql = "UPDATE tb_donhang
+            SET dc_dh= '" . $dc_dh . "',
+                sdt_dh= '" . $sdt_dh . "',
+                email_dh= '" . $email_dh . "',
+                trangthai_dh= '" . $trangthai_dh . "'
+                WHERE id=" . $id;
     pdo_execute($sql);
 }
 
@@ -171,7 +188,7 @@ function viewcart($del)
                 <th>Thành tiền</th>
                 ' . $xoasp_th . '
             </tr>';
-        foreach ($_SESSION['mycart'] as $cart) {
+    foreach ($_SESSION['mycart'] as $cart) {
         $hinh = $img_path . $cart[2];
         $ttien = $cart[3] * $cart[4];
         $tong += $ttien; //Tổng tiền và đơn hàng
@@ -185,7 +202,7 @@ function viewcart($del)
             <tr>
             <td><img src="' . $hinh . '" alt="" height="80px"</td>
             <td>' . $cart[1] . '</td>
-            <td>' . number_format($cart[3], 0, ",", ".") . ' <u></u>VNĐ</td>
+            <td>' . number_format((float)($cart[3] ?? 0)) . ' <u></u>VNĐ</td>
             <td>' . $cart[4] . '</td>
             <td>' . number_format($ttien, 0, ",", ".") . ' <u></u>VNĐ</td>
             ' . $xoasp_td . '
@@ -211,4 +228,3 @@ function loadall_cart($iddonhang)
     $bill = pdo_query($sql);
     return $bill;
 }
-?>
