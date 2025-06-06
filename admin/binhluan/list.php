@@ -1,15 +1,13 @@
 <div class="box-right">
     <div class="title-page">
-        <p>Bình luận</p> <!-- // Tiêu đề trang quản lý bình luận -->
+        <p>Bình luận</p>
     </div>
-
     <div class="form-search">
-        <form action="index.php?act=listbl" method="post"> <!-- // Gửi dữ liệu tìm kiếm đến trang listbl -->
-            <input type="text" name="kyw" placeholder="Nhập từ khóa"> <!-- // Ô nhập từ khóa tìm kiếm -->
-            <input type="submit" name="timkiembl" value="Tìm kiếm"> <!-- // Nút gửi form tìm kiếm -->
+        <form action="index.php?act=listbl" method="post">
+            <input type="text" name="kyw" placeholder="nhập từ khóa">
+            <input type="text" name="timkiembl" value="tìm kiếm ">
         </form>
     </div>
-
     <div class="row form-content">
         <table>
             <tr>
@@ -20,56 +18,54 @@
                 <th>Ngày bình luận</th>
                 <th class="text-center">Thao tác</th>
             </tr>
-
             <?php
-            foreach ($listbinhluan as $binhluan) { // // Duyệt qua danh sách bình luận
-                extract($binhluan); // // Tách các phần tử mảng thành biến riêng lẻ
-                $xoabl = "index.php?act=xoabl&id=" . $id; // // Tạo URL để xóa bình luận theo ID
-
-                echo '<tr>
-                        <td>BL-' . $id . '</td> <!-- // Hiển thị mã bình luận -->
-                        <td class="noidungbl">' . $noidung . '</td> <!-- // Hiển thị nội dung bình luận -->
-                        <td>' . $tendn . '</td> <!-- // Hiển thị tên khách hàng -->
-                        <td>' . $tensp . '</td> <!-- // Hiển thị tên sản phẩm -->
-                        <td>' . $ngaybinhluan . '</td> <!-- // Hiển thị ngày bình luận -->
-                        <td class="text-center">
-                            <a href="' . $xoabl . '" class="deleteLink" data-id="' . $id . '"><input type="button" value="Xóa" class="btn-delete"></a> <!-- // Nút xóa, gắn data-id để dùng với JS -->
-                        </td>
-                    </tr>';
-            }
-            ?>
+            foreach ($listbinhluan as $binhluan) {//duyệt qua dsach binh luan
+                extract($binhluan); // tách các ptu mảng thành biến riêng lẻ
+                $xoabl = "index.php?act=xoabl&id=" . $id; // tạo url xóa bl theo id
+                ?>
+                <tr>
+                    <td>BL-<?php echo $id; ?></td> 
+                    <td class="noidungbl"><?php echo $noidung; ?></td> 
+                    <td><?php echo $tendn; ?></td>
+                    <td><?php echo $tensp; ?></td>
+                    <td><?php echo $ngaybinhluan; ?></td>
+                    <td class="text-center">
+                        <a href="<?php echo $xoabl; ?>" class="deleteLink" data-id="<?php echo $id; ?>"><input type="button" value="xóa" class="btn-delete"></a>
+                    </td>
+                </tr>
+            <?php } ?>
         </table>
     </div>
 </div>
-
 <script>
-    // Gắn sự kiện lắng nghe cho tất cả các phần tử có class deleteLink
-    const deleteLinks = document.querySelectorAll('.deleteLink'); // // Lấy tất cả các phần tử có class deleteLink
+//gắn sự kiện lắng ngje cho tất cả các ptu có class deletelink
+const deleteLinks = document.querySelectorAll('.deleteLink');//lấy tất cả ptu
 
-    deleteLinks.forEach(link => {
-        link.addEventListener('click', function(event) { // // Gắn sự kiện click cho từng link
-            event.preventDefault(); // // Ngăn chặn hành động mặc định (chuyển trang)
+deleteLinks.forEach(link=>{
+    link.addEventListener('click',function(event){//gan su kien click cho tung link
+        event.preventDefault();//ngan can hanh dong chuyen trang
+        const id = this.getAttribute('data-id');//lay id tu thuoc tinh data-id
+        const xoabl= "index.php?act=xoabl&id=" + id;//taao url xoa tuong ung
+        Swal.fire({
+            title:"xac nhan xoa ?",//tieu de hop thoai
+            icon:"warning",//icon 
+            showCanceButton: true,//nut huy
+            confirmButtonColor:"#3085d6";//mau nut xac nhan
+            cancelButtonColor:"#d33",//mau nut huy
+            confirmButtonText:"xac nhan"//noi dung xac nhan
+        }).then((result)=>{
+            if(result.isConfirmed){// neu nguoi dung xac nhan xoa
+                Swal.fire({
+                    title:"da xoa",//hthi tbao da xoa
+                    icon: "success"//icon xoa thanh cong
+                }).then(()=>{
+                    window.location.href=xoabl;//dieu huong den url xoa bl
+                });
 
-            const id = this.getAttribute('data-id'); // // Lấy ID từ thuộc tính data-id
-            const xoabl = "index.php?act=xoabl&id=" + id; // // Tạo URL xóa tương ứng
-
-            Swal.fire({
-                title: "Xác nhận xóa?", // // Tiêu đề hộp thoại xác nhận
-                icon: "warning", // // Icon cảnh báo
-                showCancelButton: true, // // Hiện nút hủy
-                confirmButtonColor: "#3085d6", // // Màu nút xác nhận
-                cancelButtonColor: "#d33", // // Màu nút hủy
-                confirmButtonText: "Xác nhận" // // Nội dung nút xác nhận
-            }).then((result) => {
-                if (result.isConfirmed) { // // Nếu người dùng xác nhận xóa
-                    Swal.fire({
-                        title: "Đã xóa!", // // Hiển thị thông báo đã xóa
-                        icon: "success" // // Icon thành công
-                    }).then(() => {
-                        window.location.href = xoabl; // // Điều hướng đến URL xóa bình luận
-                    });
-                }
-            });
+            }
         });
+
     });
+});
+
 </script>
