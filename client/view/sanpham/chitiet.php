@@ -1,6 +1,12 @@
 <?php
+include_once __DIR__ . "/../../../model/mausac.php";
 if (is_array($sanpham)) {
     extract($sanpham);
+    if (isset($idmausac) && $idmausac > 0) {
+    $mausac = loadone_mausac($idmausac);
+    } else {
+        $mausac = null;
+    }
 }
 
 $hinhpath = "../upload/" . $hinh;
@@ -103,7 +109,8 @@ $listdm = loadall_danhmuc();
                                         <p>Trạng thái: <span>Còn hàng</span></p>
                                     </span>
                                     <span class="rest-quantity">Loại: <?= $donvi ?></span> <br>
-                                    <span class="rest-quantity"> Danh mục
+                                    <span class="rest-quantity">Màu sắc: <?= $mausac ? $mausac['tenmau'] : 'Không xác định' ?></span> <br>
+                                    <span class="rest-quantity"> Danh mục:
                                         <?php
                                         foreach ($listdm as $danhmuc) {
                                             extract($danhmuc);
