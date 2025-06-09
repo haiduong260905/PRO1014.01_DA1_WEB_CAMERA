@@ -2,7 +2,7 @@
 if (is_array($taikhoan)) {
     extract($taikhoan);
 }
-$hinhpath = "../uploads/" . $hinh;
+$hinhpath = "../upload/" . $hinh;
 if (is_file($hinhpath)){
     $hinh = "<img src='" . $hinhpath . "' height='80'>";
 }else{

@@ -4,7 +4,7 @@ if (is_array($taikhoan)) {
     $xoatk = "index.php?act=xoatk&id=" . $id;
     $suatk = "index.php?act=suatk&id=" . $id;
 }
-$hinhpath = "../uploads/" . $hinh;
+$hinhpath = "../upload/" . $hinh;
 if (is_file($hinhpath)) {
     $hinh = "<img src='" . $hinhpath . "' height='200'>";
 } else {
@@ -25,7 +25,7 @@ if (is_file($hinhpath)) {
         </div>
         <div>
             <a href="' . $xoatk . '" class="btn-delete deleteLink" data-id="' . $id . '">Xóa</a>
-        </div>'
+        </div>';
         ?>
     </div>
 
@@ -157,7 +157,7 @@ if (is_file($hinhpath)) {
             const xoabill = "index.php?act=xoabill&id=" + id;
 
             Swal.fire({
-                title: "Xác nhận hủy đơnđơn?",
+                title: "Xác nhận hủy đơn?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
