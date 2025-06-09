@@ -1,3 +1,9 @@
+<style>
+    .product-block {
+        height: 520px;
+    }
+</style>
+
 <div class="page-header">
     <div class="container">
         <div class="row">
@@ -5,7 +11,7 @@
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li><a href="index.php">Trang chủ</a></li>
-                        <li>Sản phẩm</li>
+                        <li>Sản Phẩm</li>
                     </ol>
                 </div>
             </div>
@@ -128,3 +134,42 @@
         </div>
     </div>
 </div>
+
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<script type="text/javascript">
+    (function($) {
+        // Khi trang được load hoàn tất, đoạn code bên trong sẽ được thực thi
+        $(document).ready(function() {
+            // Tìm tất <li> ở cấp con, thêm class odd và event
+            $('#cssmenu ul ul li:odd').addClass('odd');
+            $('#cssmenu ul ul li:event').addClass('event');
+            // Bắt sự kiện click vào mục cấp 1 trong menu
+            $('#cssmenu > ul > li > a').click(function() {
+                // Xóa class active khỏi tất cả các mục menu để đảm bảo chỉ có 1 mục đang được chọn tại 1 thời điểm
+                $('#cssmenu li').removeClass('active');
+                // Gán active cho mục được click
+                $(this).closest('li').addClass('active');
+                // Kiểm tra nếu sau thẻ <a> là 1 thẻ <ul> submenu thì xử lý tiếp
+                var checkElement = $(this).next();
+                // Ẩn submenu nếu đang mở
+                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                    $(this).closest('li').removeClass('active');
+                    checkElement.slideUp('normal');
+                }
+                // Hiển thị submenu nếu đang ẩn
+                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                    $('#cssmenu ul ul:visible').slideUp('normal');
+                    checkElement.slideDown('normal');
+                }
+                // Không điều hướng nếu có submenu con
+                if ($(this).closest('li').find('ul').children().length == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+    })(jQuery);
+</script>

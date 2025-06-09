@@ -209,7 +209,16 @@ $listdm = loadall_danhmuc();
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/jquery.desoslide.js"></script>
 
-
+<script type="text/javascript">
+    // Sử dụng jQuery để chọn phần tử có id 'slideshow' để áp dụng plugin desoSlide
+    $('#slideshow').desoSlide({
+        thumb: $('div.slideshow_thumbs div > a'),
+        effect: {
+            provider: 'animate', // Sử dụng nhà cung cấp hiệu ứng 'animate'
+            name: 'fade' // Đặt hiệu ứng 'fade'
+        }
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
