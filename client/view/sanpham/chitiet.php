@@ -66,6 +66,33 @@ $listdm = loadall_danhmuc();
         overflow: hidden;
         border: none;
     }
+
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .features-list li {
+        margin: 15px 0;
+        padding-left: 30px;
+        position: relative;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .features-list li i {
+        position: absolute;
+        left: 0;
+        color: #0cafe5;
+        font-size: 20px;
+    }
+
+    .features-container {
+        margin: 20px 0;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 5px;
+    }
 </style>
 
 <div class="page-header">
@@ -165,9 +192,18 @@ $listdm = loadall_danhmuc();
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="description-detail">
                     <div class="description-left">
-                        <h2 class="dgctpro">Đặc điểm nổi bật</h2>
+                        
                         <div class="mota">
-                            <?= $mota ?>
+                            <div class="features-container">
+                                <h4>Đặc điểm nổi bật</h4>
+                                <ul class="features-list">
+                                    <li><i class="fa fa-check"></i> Bảo hành chính hãng 12 tháng</li>
+                                    <li><i class="fa fa-check"></i> Hỗ trợ kỹ thuật 24/7</li>
+                                    <li><i class="fa fa-check"></i> Miễn phí vận chuyển trong nội thành</li>
+                                    <li><i class="fa fa-check"></i> Đổi trả trong 7 ngày nếu có lỗi</li>
+                                    <li><i class="fa fa-check"></i> Giá cạnh tranh nhất thị trường</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
