@@ -1,6 +1,6 @@
 <?php
 if(empty($_SESSION['user'])) {
-    echo '<script>alert("Vui lý đăng nhập");</script>';
+    echo '<script>alert("Vui lòng đăng nhập");</script>';
     echo "<script>window.location.href = 'index.php?act=dangnhap';</script>";
 }
 ?>
