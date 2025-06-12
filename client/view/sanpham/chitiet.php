@@ -3,7 +3,7 @@ include_once __DIR__ . "/../../../model/mausac.php";
 if (is_array($sanpham)) {
     extract($sanpham);
     if (isset($idmausac) && $idmausac > 0) {
-    $mausac = loadone_mausac($idmausac);
+        $mausac = loadone_mausac($idmausac);
     } else {
         $mausac = null;
     }
@@ -231,7 +231,14 @@ $listdm = loadall_danhmuc();
 
 <script src="link_to_your_desoSlide_plugin.js"></script>
 
-
+<script type="text/javascript">
+    $(function() {
+        $("#rateYo").rateYo({
+            rating: 3.6,
+            starWidth: "25px"
+        });
+    });
+</script>
 
 <script>
     function dcQuantity() {
@@ -253,4 +260,29 @@ $listdm = loadall_danhmuc();
         }
         return false;
     }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.less-evaluation').click(function() {
+            $('.content-desc').css('height', '1180px');
+            $(this).css('display', "none");
+            $('.more-evaluation').css('display', 'block');
+        })
+    })
+
+    $(document).ready(function() {
+        $('.more-evaluation').click(function() {
+            $('.content-desc').css('height', 'auto');
+            $(this).css('display', "none");
+            $('.less-evaluation').css('display', 'block');
+        })
+    })
+
+    $(document).ready(function() {
+        $('.page-scroll').click(function() {
+            $('.page-scroll').removeClass('active');
+            $(this).addClass('active');
+        })
+    })
 </script>
