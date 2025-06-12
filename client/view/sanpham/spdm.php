@@ -127,7 +127,7 @@
         $(document).ready(function() {
             // Tìm tất <li> ở cấp con, thêm class odd và event
             $('#cssmenu ul ul li:odd').addClass('odd');
-            $('#cssmenu ul ul li:event').addClass('event');
+            $('#cssmenu ul ul li:even').addClass('even');
             // Bắt sự kiện click vào mục cấp 1 trong menu
             $('#cssmenu > ul > li > a').click(function() {
                 // Xóa class active khỏi tất cả các mục menu để đảm bảo chỉ có 1 mục đang được chọn tại 1 thời điểm
