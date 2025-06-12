@@ -90,6 +90,7 @@
                             <ul>
                                 <li class="active"><a href="index.php">Trang chủ</a></li>
                                 <li><a href="index.php?act=sanpham">Sản Phẩm</a></li>
+                                <li><a href="index.php?act=gioithieu">Giới Thiệu</a></li>
                                 <li><a href="index.php?act=thongtin">Thông tin</a></li>
                                 <li><a href="index.php?act=baiviet">Bài viết</a></li>
                                 <li><a href="index.php?act=lienhe">Liên hệ, hỗ trợ</a></li>

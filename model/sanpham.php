@@ -18,12 +18,12 @@ function delete_sanpham($id)
     pdo_execute($sql);
 }
 
-function update_sanpham($id, $iddm, $tensp, $giasp, $soluong, $mota, $donvi, $ngaynhap, $hinh)
+function update_sanpham($id, $iddm, $tensp, $giasp, $soluong, $mota, $donvi, $ngaynhap, $idmausac, $hinh)
 {
     if($hinh != "")
-        $sql = "UPDATE tb_sanpham SET iddm= '".$iddm."', tensp= '".$tensp."', giasp= '".$giasp."', soluong= '".$soluong."', mota= '".$mota."', donvi= '".$donvi."', ngaynhap= '".$ngaynhap."', hinh= '".$hinh."' WHERE id=" . $id;
+        $sql = "UPDATE tb_sanpham SET iddm= '".$iddm."', tensp= '".$tensp."', giasp= '".$giasp."', soluong= '".$soluong."', mota= '".$mota."', donvi= '".$donvi."', ngaynhap= '".$ngaynhap."', idmausac= '".$idmausac."', hinh= '".$hinh."' WHERE id=" . $id;
     else
-        $sql = "UPDATE tb_sanpham SET iddm= '".$iddm."', tensp= '".$tensp."',  giasp= '".$giasp."', soluong= '".$soluong."', mota= '".$mota."', donvi= '".$donvi."', ngaynhap= '".$ngaynhap."' WHERE id=" . $id;
+        $sql = "UPDATE tb_sanpham SET iddm= '".$iddm."', tensp= '".$tensp."',  giasp= '".$giasp."', soluong= '".$soluong."', mota= '".$mota."', donvi= '".$donvi."', ngaynhap= '".$ngaynhap."', idmausac= '".$idmausac."' WHERE id=" . $id;
     pdo_execute($sql);
 }
 
