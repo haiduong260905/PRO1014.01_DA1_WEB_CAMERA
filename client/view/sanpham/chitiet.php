@@ -3,7 +3,7 @@ include_once __DIR__ . "/../../../model/mausac.php";
 if (is_array($sanpham)) {
     extract($sanpham);
     if (isset($idmausac) && $idmausac > 0) {
-    $mausac = loadone_mausac($idmausac);
+        $mausac = loadone_mausac($idmausac);
     } else {
         $mausac = null;
     }
@@ -65,6 +65,33 @@ $listdm = loadall_danhmuc();
         width: 100%;
         overflow: hidden;
         border: none;
+    }
+
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .features-list li {
+        margin: 15px 0;
+        padding-left: 30px;
+        position: relative;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .features-list li i {
+        position: absolute;
+        left: 0;
+        color: #0cafe5;
+        font-size: 20px;
+    }
+
+    .features-container {
+        margin: 20px 0;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 5px;
     }
 </style>
 
@@ -165,9 +192,18 @@ $listdm = loadall_danhmuc();
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="description-detail">
                     <div class="description-left">
-                        <h2 class="dgctpro">Đặc điểm nổi bật</h2>
+                        
                         <div class="mota">
-                            <?= $mota ?>
+                            <div class="features-container">
+                                <h4>Đặc điểm nổi bật</h4>
+                                <ul class="features-list">
+                                    <li><i class="fa fa-check"></i> Bảo hành chính hãng 12 tháng</li>
+                                    <li><i class="fa fa-check"></i> Hỗ trợ kỹ thuật 24/7</li>
+                                    <li><i class="fa fa-check"></i> Miễn phí vận chuyển trong nội thành</li>
+                                    <li><i class="fa fa-check"></i> Đổi trả trong 7 ngày nếu có lỗi</li>
+                                    <li><i class="fa fa-check"></i> Giá cạnh tranh nhất thị trường</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,13 +252,29 @@ $listdm = loadall_danhmuc();
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/jquery.desoslide.js"></script>
 
-
+<script type="text/javascript">
+    // Sử dụng jQuery để chọn phần tử có id 'slideshow' để áp dụng plugin desoSlide
+    $('#slideshow').desoSlide({
+        thumb: $('div.slideshow_thumbs div > a'),
+        effect: {
+            provider: 'animate', // Sử dụng nhà cung cấp hiệu ứng 'animate'
+            name: 'fade' // Đặt hiệu ứng 'fade'
+        }
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script src="link_to_your_desoSlide_plugin.js"></script>
 
-
+<script type="text/javascript">
+    $(function() {
+        $("#rateYo").rateYo({
+            rating: 3.6,
+            starWidth: "25px"
+        });
+    });
+</script>
 
 <script>
     function dcQuantity() {
@@ -244,4 +296,29 @@ $listdm = loadall_danhmuc();
         }
         return false;
     }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.less-evaluation').click(function() {
+            $('.content-desc').css('height', '1180px');
+            $(this).css('display', "none");
+            $('.more-evaluation').css('display', 'block');
+        })
+    })
+
+    $(document).ready(function() {
+        $('.more-evaluation').click(function() {
+            $('.content-desc').css('height', 'auto');
+            $(this).css('display', "none");
+            $('.less-evaluation').css('display', 'block');
+        })
+    })
+
+    $(document).ready(function() {
+        $('.page-scroll').click(function() {
+            $('.page-scroll').removeClass('active');
+            $(this).addClass('active');
+        })
+    })
 </script>

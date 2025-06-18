@@ -25,7 +25,7 @@ if (isset($bill) && (is_array($bill))) {
                 <div class="left-container">
                     <div class="user-info">
                         <?php
-                        if(isset($_SESSION['user'])) {
+                        if (isset($_SESSION['user'])) {
                             extract($_SESSION['user']);
                             echo '<a href="your_destination_url_here">
 
@@ -105,6 +105,7 @@ if (isset($bill) && (is_array($bill))) {
                                                             </tbody>
                                                             ';
                             }
+
                             ?>
                             <?php
                             echo '<tfoot>
@@ -125,6 +126,9 @@ if (isset($bill) && (is_array($bill))) {
 
 
                         </table>
+                        <?php
+                        unset($_SESSION['mycart']);
+                        ?>
                         <a href="index.php?act=donmua" class="redirect-to-receipt text-blue"><i class="fas fa-long-arrow-alt-left"></i>Đơn Hàng Của Bạn</a>
                     </div>
                 </div>
