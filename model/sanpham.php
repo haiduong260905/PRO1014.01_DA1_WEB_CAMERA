@@ -6,9 +6,9 @@ function tong_sanpham()
     return sizeof($tongsp);
 }
 
-function insert_sanpham($tensp, $giasp, $soluong, $hinh, $mota, $donvi, $ngaynhap, $iddm, $idmausac)
+function insert_sanpham($tensp, $giasp, $soluong, $hinh, $mota, $donvi, $ngaynhap, $iddm)
 {
-    $sql = "INSERT INTO tb_sanpham(tensp,giasp,soluong,hinh,mota,donvi,ngaynhap,iddm,idmausac) VALUES ('$tensp', '$giasp', '$soluong', '$hinh', '$mota', '$donvi', '$ngaynhap', '$iddm', '$idmausac')";
+    $sql = "INSERT INTO tb_sanpham(tensp,giasp,soluong,hinh,mota,donvi,ngaynhap,iddm) VALUES ('$tensp', '$giasp', '$soluong', '$hinh', '$mota', '$donvi', '$ngaynhap', '$iddm')";
     pdo_execute($sql);
 }
 
@@ -52,19 +52,16 @@ function loadall_sanpham_shop()
 //Hàm Tìm kiếm sp và Lọc sản phẩm theo iddm
 function loadall_sanpham($kyw = "", $iddm = 0)
 {
-    $sql = "SELECT sp.*, ms.tenmau 
-            FROM tb_sanpham sp 
-            LEFT JOIN tb_mausac ms ON sp.idmausac = ms.id 
-            WHERE 1";
+    $sql = "SELECT * FROM tb_sanpham WHERE 1";
     
     if ($kyw != "") {
-        $sql .= " AND sp.tensp LIKE '%" . $kyw . "%'";
+        $sql .= " AND tensp LIKE '" . $kyw . "%'";
     }
     if ($iddm > 0) {
-        $sql .= " AND sp.iddm = '" . $iddm . "'";
+        $sql .= " AND iddm = '" . $iddm . "'";
     }
 
-    $sql .= " ORDER BY sp.id DESC";
+    $sql .= " ORDER BY id DESC";
 
     $listsanpham = pdo_query($sql);
     return $listsanpham;
@@ -77,5 +74,17 @@ function load_sanpham_cungloai($id,$iddm)
     return $listsanpham;
 }
 
+function loadall_sanpham_admin()
+{
+    $sql = "SELECT * FROM tb_sanpham ORDER BY id DESC";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
+
+function update_sanpham_soluong($id, $soluong)
+{
+    $sql = "UPDATE tb_sanpham SET soluong = soluong - '" . $soluong . "' WHERE id = '" . $id . "'";
+    pdo_execute($sql);
+}
 
 ?>

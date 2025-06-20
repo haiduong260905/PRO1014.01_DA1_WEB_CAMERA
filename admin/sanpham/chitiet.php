@@ -1,6 +1,8 @@
 <?php
 if (is_array($sanpham)) {
     extract($sanpham);
+    $mausac = loadone_mausac($idmausac);
+    $tenmau = $mausac['tenmau'] ?? 'Không rõ';
     $xoasp = "index.php?act=xoasp&id=" . $id;
     $suasp = "index.php?act=suasp&id=" . $id;
 }
@@ -77,6 +79,11 @@ $listbl_theoid = loadall_binhluan($idsp)
                     <tr>
                         <th>Đơn vị</th>
                         <td>' . $donvi . '</td>
+                    </tr>
+
+                    <tr>
+                        <th>Màu sắc</th>
+                        <td>' . $tenmau . '</td>
                     </tr>
 
                     <tr>

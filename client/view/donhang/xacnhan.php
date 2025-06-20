@@ -50,6 +50,68 @@ if (isset($bill) && (is_array($bill))) {
                 <div class="right-container">
                     <h3 class="title-content">Đặt hàng thành công</h3>
                     <div class="receipt-infor-details">
+                        <style>
+    .payment-options {
+        margin: 30px 0;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+
+    .payment-options .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+        background: #0052cc;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .payment-options .btn:hover {
+        background: #003791;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .payment-options img {
+        height: 28px;
+        width: auto;
+        filter: brightness(0) invert(1);
+    }
+
+    .payment-options .btn span {
+        display: inline-block;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+        .payment-options {
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        .payment-options .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="payment-options">
+
+</div>
                         <div class="title-receipt">
                             <div class="left-content content">
                                 <h4>Đơn hàng</h4>

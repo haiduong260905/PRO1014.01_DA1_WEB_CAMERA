@@ -1,8 +1,4 @@
 <?php
-function loadall_mausac(){
-    $sql = "SELECT * FROM tb_mausac ORDER BY id DESC";
-    // $listmausac = pdo_query($sql);
-    // return $listmausac;
-    return pdo_query($sql);
-}
+// File này không còn được sử dụng vì bảng màu sắc không tồn tại
+// Các hàm liên quan đến màu sắc đã được xóa khỏi hệ thống
 ?>

@@ -125,19 +125,6 @@ $listmausac = loadall_mausac(); // gọi dữ liệu màu sắc
         </div>
 
         <div class="form-group">
-
-            <label>Màu sắc:</label>
-            <select name="idmausac" class="form-input">
-                <?php
-                foreach($listmausac as $mausac){
-                    extract($mausac);
-                    echo "<option value='" . $id . "'>$tenmau</option>";
-                }
-                ?>
-            </select>
-        </div>
-
-        <div class="form-group">
             <label>Mô tả sản phẩm:</label>
             <textarea name="mota" class="form-input" rows="4" placeholder="Mô tả chi tiết sản phẩm"></textarea>
         </div>

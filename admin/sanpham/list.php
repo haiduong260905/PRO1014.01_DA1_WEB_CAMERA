@@ -31,7 +31,6 @@
                 <th>HÌNH SẢN PHẨM</th>
                 <th>GIÁ SẢN PHẨM</th>
                 <th>SỐ LƯỢNG</th>
-                <th>MÀU SẮC</th>
                 <th>MÔ TẢ</th>
                 <th class="text-center">THAO TÁC</th>
             </tr>
@@ -40,8 +39,6 @@
             if (isset($listsanpham)) {
                 foreach ($listsanpham as $key => $sanpham) {
                     extract($sanpham);
-                    $tenmau = $sanpham['tenmau']; // Lấy tên màu từ JOIN
-
                     $xoasp = "index.php?act=xoasp&id=" . $id;
                     $suasp = "index.php?act=suasp&id=" . $id;
                     $chitietsp = "index.php?act=chitietsp&id=" . $id;
@@ -61,7 +58,6 @@
                         <td>' . $hinh . '</td>
                         <td>' . number_format($giasp, 0, ",", ".") . ' <u>đ</u></td>
                         <td>' . $soluong . '</td>
-                        <td>' . $tenmau . '</td>
                         <td><div class="table-description">' . $mota . '</div></td>
                         <td class="text-center">
                             <a href="' . $suasp . '"><input type="button" value="Sửa" class="btn-update"></a>
@@ -75,6 +71,62 @@
         </table>
     </div>
 </div>
+
+<div class="thongbao">
+    <?php
+    if (isset($thongbao) && $thongbao != "")
+        echo $thongbao;
+    ?>
+</div>
+
+<script>
+    // Cập nhật dữ liệu sản phẩm tự động sau mỗi 5 giây
+    setInterval(function() {
+        $.ajax({
+            url: 'ajax/load-data.php',
+            type: 'GET',
+            success: function(response) {
+                if (response) {
+                    // Xóa bảng cũ
+                    $('table tr:gt(0)').remove();
+                    
+                    // Thêm dữ liệu mới
+                    var data = JSON.parse(response);
+                    var stt = 1;
+                    
+                    data.forEach(function(item) {
+                        var row = '<tr>' +
+                            '<td>' + stt + '</td>' +
+                            '<td>' + item.tensp + '</td>' +
+                            '<td>' + item.hinh + '</td>' +
+                            '<td>' + item.giasp + '</td>' +
+                            '<td>' + item.soluong + '</td>' +
+                            '<td><div class="table-description">' + item.mota + '</div></td>' +
+                            '<td class="text-center">' +
+                            '<a href="index.php?act=suasp&id=' + item.id + '"><input type="button" value="Sửa" class="btn-update"></a>' +
+                            '<a href="index.php?act=xoasp&id=' + item.id + '" class="deleteLink" data-id="' + item.id + '"><input type="button" value="Xóa" class="btn-delete"></a>' +
+                            '<a href="index.php?act=chitietsp&id=' + item.id + '"><input type="button" value="Chi tiết" class="btn-detail"></a>' +
+                            '</td>' +
+                            '</tr>';
+                        $('table').append(row);
+                        stt++;
+                    });
+                }
+            }
+        });
+    }, 5000); // Cập nhật mỗi 5 giây
+
+    // Xử lý xóa sản phẩm
+    $(document).ready(function() {
+        $('.deleteLink').click(function(e) {
+            e.preventDefault();
+            var xoasp = $(this).attr('href');
+            if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+                window.location.href = xoasp;
+            }
+        });
+    });
+</script>
 
 <!-- Xác nhận xóa -->
 <script>
@@ -101,6 +153,13 @@
                         window.location.href = xoasp;
                     });
                 }
+                <?php
+                include("../../model/danhmuc.php");
+                include("../../model/sanpham.php");
+
+                // Load danh sách sản phẩm mới nhất
+                $listsanpham = loadall_sanpham_admin();
+                ?>
             });
         });
     });
