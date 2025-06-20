@@ -195,52 +195,6 @@ if (isset($bill) && (is_array($bill))) {
         </div>
     </div>
 </div>
-
-<!-- /.login-form -->
-
-<script>
-// Cập nhật số lượng sản phẩm sau khi đặt hàng thành công
-document.addEventListener('DOMContentLoaded', function() {
-    const bill = <?php echo json_encode($bill); ?>;
-    
-    if (bill && bill['id']) {
-        // Lấy danh sách các sản phẩm trong đơn hàng
-        const billDetails = <?php 
-            if (isset($bill_details) && is_array($bill_details)) {
-                echo json_encode($bill_details);
-            } else {
-                echo '[]';
-            }
-        ?>;
-        
-        // Cập nhật số lượng cho từng sản phẩm
-        billDetails.forEach(detail => {
-            updateProductQuantity(detail.product_id, detail.quantity);
-        });
-    }
-});
-
-function updateProductQuantity(productId, quantity) {
-    fetch('../admin/sanpham/update_quantity.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'product_id=' + productId + '&quantity=' + quantity
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (!data.success) {
-            console.error('Lỗi cập nhật số lượng:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Lỗi:', error);
-    });
-}
-</script>
-
-
 <!-- JS -->
 
 <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
